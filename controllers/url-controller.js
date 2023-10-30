@@ -6,6 +6,7 @@ module.exports.handleUrl = async function(req,res){
         shortId: shortid,
         redirectedURL: req.body.url,
         visits: 0,
+        createdBy: req.user._id,
     })
     res.redirect(`/result?shortid=${shortid}`);
     
@@ -15,8 +16,10 @@ module.exports.handleRedirect = async function(req,res){
     const shortId = req.params.id;
     const entry = await Url.findOne({shortId});
 
-    if(!entry) res.status(400).json({error: "Error in Founding Entry"})
-
+    if(!entry){
+     res.status(400).json({error: "Error in Founding Entry"})
+      return;
+    }
     entry.visits += 1;
     await entry.save();
 
