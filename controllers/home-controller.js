@@ -14,3 +14,9 @@ module.exports.destroy = async function(req,res){
     if(!doc) res.json(400,{msg: 'Document not found'})
     res.redirect('/activity');
 }
+module.exports.result = async function(req,res){
+    const shortId = req.query.shortid;
+    res.render('result', {
+        id: shortId
+    });
+}
