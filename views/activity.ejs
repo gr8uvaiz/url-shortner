@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <%-include('_header'); %>
+  <%- include('_header',{ LoggedIn: LoggedIn }); -%>
     <h2 class="my-4 text-center">Your Activity</h2>
     <% if(locals.allUrl){%>
       <table class="table px-4">

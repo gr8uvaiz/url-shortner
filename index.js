@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const db = require('./config/mognoose')
-const port = 3000
+const port = 3001
 const cookieParser = require('cookie-parser')
 
 app.use(express.json())

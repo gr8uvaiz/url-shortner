@@ -4,6 +4,7 @@ const AuthMap = require('../service/auth');
 module.exports.userSignUp = function(req,res){
     let LoggedIn = false;
     if(req.user) LoggedIn = true;
+    if(LoggedIn) res.redirect('/');
     return res.render('signup',{
         title: 'SignUp | Short Url',
         LoggedIn: LoggedIn
@@ -12,10 +13,16 @@ module.exports.userSignUp = function(req,res){
 module.exports.userLogin = function(req,res){
     let LoggedIn = false;
     if(req.user) LoggedIn = true;
+    if(LoggedIn) res.redirect('/');
     return res.render('login',{
         title: 'Login | Short Url',
         LoggedIn: LoggedIn
     });
+}
+module.exports.destroy = function(req,res){
+    res.clearCookie('uid');
+    // res.end()
+    res.redirect('/');
 }
 module.exports.create = async function(req,res){
     const user = await User.findOne({ email: req.body.email });
@@ -39,9 +46,8 @@ module.exports.login = async function(req,res){
             res.redirect('/users/login');
             return;
         }
-        const sessionId = uuidv4();
-        AuthMap.setUser(sessionId,user);
-        res.cookie("uid",sessionId);
+        const token = AuthMap.setUser(user);
+        res.cookie("uid",token);
     }
     res.redirect('/')
 }
