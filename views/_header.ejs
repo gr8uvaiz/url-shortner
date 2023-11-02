@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand bg-body-tertiary">
+<nav  class="navbar navbar-expand bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="/">Short Url</a>
+    <a class="navbar-brand" href="/">Short  <span class="text-primary" style="font-weight: bold;">URL</span></a>
   </div>
   <ul class="navbar-nav mx-4">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/">Home</a>
+      <a class="nav-link active text-primary " style="font-weight: bold;" aria-current="page" href="/">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/activity">Activity</a>
@@ -16,6 +16,9 @@
     <%}else{%>
       <li class="nav-item">
         <a class="nav-link" href="/users/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/SignUp">Signup</a>
       </li>
     <%}%>
   </ul>

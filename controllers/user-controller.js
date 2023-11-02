@@ -6,7 +6,7 @@ module.exports.userSignUp = function(req,res){
     if(req.user) LoggedIn = true;
     if(LoggedIn) res.redirect('/');
     return res.render('signup',{
-        title: 'SignUp | Short Url',
+        title: 'SignUp | Short URL',
         LoggedIn: LoggedIn
     });
 }
@@ -15,13 +15,12 @@ module.exports.userLogin = function(req,res){
     if(req.user) LoggedIn = true;
     if(LoggedIn) res.redirect('/');
     return res.render('login',{
-        title: 'Login | Short Url',
+        title: 'Login | Short URL',
         LoggedIn: LoggedIn
     });
 }
 module.exports.destroy = function(req,res){
     res.clearCookie('uid');
-    // res.end()
     res.redirect('/');
 }
 module.exports.create = async function(req,res){
