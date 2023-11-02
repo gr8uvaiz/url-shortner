@@ -37,7 +37,7 @@ module.exports.create = async function(req,res){
 module.exports.login = async function(req,res){
     const user = await User.findOne({email: req.body.email});
     if(!user){
-        res.redirect('/users/login'); 
+        res.redirect('/users/signUp'); 
         return;
     }
     else{

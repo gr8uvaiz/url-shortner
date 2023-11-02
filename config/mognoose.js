@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/url');
-const db = mongoose.connection;
+const dotenv = require('dotenv');
+dotenv.config({path: `./local.env`});
+const db = process.env.DATABASE;
 
-db.on('error',console.error.bind('Error in Establishing the connection in Database'))
-
-db.once('open',()=>{
-    console.log("Database is connected");
-})
+mongoose.connect(db).then(()=>{console.log("Database Succesfully Connected")})
+.catch(err=>{console.log("Error in Connecting Database",err)})
 
 module.exports = db;

@@ -12,6 +12,7 @@ module.exports.checkAuthentication = async function(req,res,next){
 }
 module.exports.restrictTo = function(role){
     return function(req,res,next){
+        if(req.user == null) return res.end("UnAuthorized");
         if(req.user.role == role) return next();
         else return res.end("UnAuthorized")
     }

@@ -1,10 +1,13 @@
-// const sessionIdMap = new Map();
 const jwt = require('jsonwebtoken')
 
-const secret = "@Uvaiz"
+const dotenv = require('dotenv');
+dotenv.config({path: `./local.env`});
+
+const secret = process.env.SECRET
 module.exports.setUser = function(user){
     return jwt.sign({
         _id: user._id,
+        name: user.name,
         email: user.email,
         role: user.role
     },secret)

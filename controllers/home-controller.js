@@ -1,4 +1,5 @@
-const Url = require('../models/url')
+const Url = require('../models/url');
+const User = require('../models/user')
 module.exports.home = async function(req,res){
     let LoggedIn = false;
     if(req.user) LoggedIn = true;
@@ -12,10 +13,11 @@ module.exports.activity = async function(req,res){
     let LoggedIn = false;
     if(req.user) LoggedIn = true;
     if(!req.user) return res.redirect('/users/login')
-    const url = await Url.find({createdBy: req.user._id});
+    const url = await Url.find({createdBy: req.user._id}).populate('createdBy');
     res.render('activity',{
         allUrl: url,
         title: 'Activities | Short URL',
+        name: req.user.name,
         LoggedIn: LoggedIn
     })
 }
@@ -23,7 +25,7 @@ module.exports.activityAdmin = async function(req,res){
     let LoggedIn = false;
     if(req.user) LoggedIn = true;
     if(!req.user) return res.redirect('/users/login')
-    const url = await Url.find({});
+    const url = await Url.find({}).populate('createdBy');
     res.render('activity',{
         allUrl: url,
         title: 'Admin Activities | Short URL',
