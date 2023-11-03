@@ -1,5 +1,7 @@
 # URL Shortener
 
+[Live Demo](https://shorturl-c6iy.onrender.com/)
+
 A basic URL shortener service built with **Node.js**, **Express.js**, **MongoDB**, **EJS**, and **Bootstrap**. This project allows you to shorten long URLs, create custom short URLs, and provides user authentication using JWT tokens along with authorization for secure URL management.
 
 ## Features
